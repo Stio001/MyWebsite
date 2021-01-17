@@ -1,0 +1,19 @@
+﻿@model Phone
+<div>
+    <h2>@Model.Title</h2>
+    <h3>@Model.Subtitle</h3>
+    <div class="div-box">
+        <label asp-for="@Model.Company"></label>
+        <label>@Model.Company</label>
+    </div>
+    <div>
+        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+    </div>
+    <div class="div-box">
+        <label asp-for="@Model.Price"></label>
+        <label>@Model.Price руб.</label>
+    </div>
+</div>
+<div>
+    @Html.Raw(Model.Text)
+</div>

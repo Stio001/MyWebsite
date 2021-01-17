@@ -1,0 +1,21 @@
+﻿@model IQueryable<Phone>
+@{ 
+    TextField textField = ViewBag.TextField;
+}
+<div>
+    @if (Model.Any())
+    {
+        <ul class="big-image-list">
+            @foreach (Phone phone in Model)
+            {
+                <li>
+                    <a asp-area="" asp-controller="Phones" asp-action="Index" asp-route-id="@phone.Id">
+                        <img src="~/images/@phone.TitleImagePath" alt="" class="left" />
+                    </a>
+                    <h4>@phone.Title</h4>
+                    <p>@phone.Subtitle</p>
+                </li>
+            }
+        </ul>
+    }
+</div>

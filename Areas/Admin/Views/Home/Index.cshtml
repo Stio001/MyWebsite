@@ -1,0 +1,48 @@
+﻿@model IQueryable<Phone>
+@{ 
+    string strTitle = "Панель администратора";
+    ViewBag.Ttile = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <h3>Наши товары</h3>
+        <div class="div-box">
+            <a asp-area="Admin" asp-controller="Phones" asp-action="Edit" asp-route-id="">Добавить услугу</a>
+        </div>
+        @if (Model.Any())
+        {
+            <div>
+                @foreach (Phone phone in Model)
+                {
+                    <div>
+                        <a asp-area="Admin" asp-controller="Phones" asp-action="Edit" asp-route-id="@phone.Id">Редактировать</a>
+
+                        <form style="display: inline-block;" id="form-@phone.Id" asp-area="Admin" asp-controller="Phones" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@phone.Id">
+                            <a href="#" onclick="document.getElementById('form-@phone.Id').submit();">удалить</a>
+                        </form>
+
+                        <a asp-area="" asp-controller="Phones" asp-action="Index" asp-route-id="@phone.Id" >
+                            @($"{ phone.Title}")
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="div-box">
+        <h3>Редактировать страницы сайта</h3>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PagePhones">Каталог</a>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+    </div>
+
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+            <input type="submit" value="Выйти" />
+        </form>
+    </div>
+</div>

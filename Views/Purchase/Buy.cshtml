@@ -1,0 +1,28 @@
+﻿@model Order
+<div>
+    <h2>Форма оформления покупки</h2>
+    <p>Для оформления покупки заполните следующие поля:</p>
+    <form asp-area="" asp-controller="Purchase" asp-action="Buy" method="post">
+        <input type="hidden" asp-for="Phone" value="@ViewBag.Phone" />
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="DateAdded" />
+
+        <div asp-validation-summary="All"></div>
+        <div class="div-box">
+            <label asp-for="User"></label>
+            <input asp-for="User" />
+            <span asp-validation-for="User"></span>
+        </div>
+        <div class="div-box">
+            <label asp-for="Address"></label>
+            <input asp-for="Address" />
+            <span asp-validation-for="Address"></span>
+        </div>
+        <div class="div-box">
+            <label asp-for="ContactPhone"></label>
+            <input asp-for="ContactPhone" />
+            <span asp-validation-for="ContactPhone"></span>
+        </div>
+        <input type="submit" value="Оформить заказ" />
+    </form>
+</div>
