@@ -41,10 +41,10 @@ namespace MyWebsite.Areas.Admin.Controllers
                     using (var stream = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
                     {
                         titleImageFile.CopyTo(stream);
-                    }
-                    dataManager.Phones.SavePhone(model);
-                    return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+                    }            
                 }
+                dataManager.Phones.SavePhone(model);
+                return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
             }
             return View(model);
         }

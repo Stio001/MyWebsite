@@ -35,7 +35,8 @@ namespace MyWebsite
             services.AddTransient<DataManager>();
 
             //подключаем контекст БД
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Config.DefaultConnection));
+            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Config.DefaultConnection));
+            services.AddEntityFrameworkSqlite().AddDbContext<AppDbContext>();
 
             //настраиваем identity систему
             services.AddIdentity<IdentityUser, IdentityRole>(options =>

@@ -12,7 +12,10 @@ namespace MyWebsite.Domain
     public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options) { }
+            : base(options) 
+        {
+            Database.EnsureCreated();
+        }
 
         public DbSet<TextField> TextFields { get; set; }
         public DbSet<Phone> Phones { get; set; }
@@ -67,6 +70,11 @@ namespace MyWebsite.Domain
                 CodeWord = "PageIndex",
                 Title = "Главная"
             });
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Filename=mobilestore.db");
         }
     }
 }
